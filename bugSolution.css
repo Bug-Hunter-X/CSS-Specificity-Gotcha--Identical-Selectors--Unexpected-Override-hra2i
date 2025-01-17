@@ -1,0 +1,34 @@
+The solution involves understanding CSS specificity and cascading order.  The order in which CSS rules appear matters. While in this example both selectors are the same, CSS parses from top to bottom. The later declaration overrides the previous one.
+
+To solve this, consider the following:
+
+1. **Improved Selector Organization**:  A more careful arrangement of the CSS rules can prevent issues like this.  Ensure the rules are written in a way that their specificity and order work to your advantage. 
+2. **Increased Specificity**: Adding more specific selectors can help (though this is not always feasible or best practice).
+3. **Using `!important` (With Caution)**: As a last resort, `!important` can be used to force the desired style. However, this is generally discouraged as it reduces the maintainability of your CSS and can make debugging very difficult.
+
+Here's a version of the CSS that solves this problem (bugSolution.css):
+
+```css
+div {
+  color: blue;
+}
+
+.special-div {
+  color: red;
+}
+
+#my-div {
+  color: green;
+}
+
+#my-div.special-div {
+  color: purple;
+}
+
+/* Now this will work as expected */
+#my-div.special-div.extra {
+  color: yellow;
+}
+```
+
+This improved organization will ensure the yellow color is applied as intended.  Consider this a learning experience in how the order of your CSS and specificity can cause surprising results.
